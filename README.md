@@ -91,6 +91,7 @@ npm run test:coverage
 
 ### Dashboard with Search and Image Slider
 ![Dashboard](./Sceenshots/Screenshot%20(192).png)
+![Add sweet](./Sceenshots/Screenshot%20(193).png)
 
 ## My AI Usage
 
