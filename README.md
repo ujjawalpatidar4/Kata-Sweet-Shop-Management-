@@ -84,6 +84,36 @@ npm test
 npm run test:coverage
 ```
 
+## Application Screenshots
+
+### Login Page
+![Dashboard](./Sceenshots/Screenshot%20(191).png)
+
+### Dashboard with Search and Image Slider
+![Dashboard](./Sceenshots/Screenshot%20(192).png)
+
+## My AI Usage
+
+### AI Tools Used
+- **GitHub Copilot** - Primary AI assistant for code generation, UI/UX improvements, and styling.
+
+### How AI Was Used
+
+#### 1. **UI/UX Theme Development**
+#### 2. **Search Button Visualization**
+#### 3. **Color and Theme Refinement**
+#### 4. **Responsive Design**
+
+### Impact on Workflow
+
+**Positive:**
+- **Speed**
+- **Learning**
+
+**Challenges:**
+- **Over-reliance**
+- **CSS Processing Issues**
+
 ## License
 
 MIT
