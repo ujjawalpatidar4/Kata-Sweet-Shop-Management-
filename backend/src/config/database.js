@@ -1,18 +1,17 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 /**
  * Connect to MongoDB database
  * @returns {Promise<void>}
  */
-const connectDB = async () => {
+export const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI);
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log("MongoDB Connected");
     return conn;
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    // Only exit in production, not during tests
     if (process.env.NODE_ENV !== 'test') {
       process.exit(1);
     }
@@ -20,4 +19,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;

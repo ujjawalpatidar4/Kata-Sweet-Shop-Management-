@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 /**
  * Generate JWT token
  * @param {string} userId - User ID to encode in token
  * @returns {string} - JWT token
  */
-const generateToken = (userId) => {
+export const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE || '7d',
   });
@@ -16,11 +16,8 @@ const generateToken = (userId) => {
  * @param {string} token - JWT token to verify
  * @returns {object} - Decoded token payload
  */
-const verifyToken = (token) => {
+export const verifyToken = (token) => {
   return jwt.verify(token, process.env.JWT_SECRET);
 };
 
-module.exports = {
-  generateToken,
-  verifyToken,
-};
+export default { generateToken, verifyToken };

@@ -1,16 +1,15 @@
-const User = require('../models/User');
-const { generateToken } = require('../utils/jwt');
+import User from '../models/User.js';
+import { generateToken } from '../utils/jwt.js';
 
 /**
  * Register a new user
  * @route POST /api/auth/register
  * @access Public
  */
-const register = async (req, res, next) => {
+export const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
-    // Validate required fields
     if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
@@ -18,7 +17,6 @@ const register = async (req, res, next) => {
       });
     }
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -27,14 +25,12 @@ const register = async (req, res, next) => {
       });
     }
 
-    // Create user
     const user = await User.create({
       name,
       email,
       password,
     });
 
-    // Generate token
     const token = generateToken(user._id);
 
     res.status(201).json({
@@ -50,7 +46,6 @@ const register = async (req, res, next) => {
       },
     });
   } catch (error) {
-    // Handle validation errors
     if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map((err) => err.message);
       return res.status(400).json({
@@ -68,11 +63,10 @@ const register = async (req, res, next) => {
  * @route POST /api/auth/login
  * @access Public
  */
-const login = async (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // Validate required fields
     if (!email || !password) {
       return res.status(400).json({
         success: false,
@@ -80,18 +74,14 @@ const login = async (req, res, next) => {
       });
     }
 
-    // Find user and include password field
     const user = await User.findOne({ email }).select('+password');
 
-    // Check if user exists and password is correct
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({
         success: false,
         message: 'Invalid credentials',
       });
     }
-
-    // Generate token
     const token = generateToken(user._id);
 
     res.status(200).json({
@@ -116,7 +106,7 @@ const login = async (req, res, next) => {
  * @route GET /api/auth/me
  * @access Private
  */
-const getMe = async (req, res, next) => {
+export const getMe = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id);
 
@@ -129,8 +119,4 @@ const getMe = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  register,
-  login,
-  getMe,
-};
+export default { register, login, getMe };

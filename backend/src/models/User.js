@@ -1,10 +1,6 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
-/**
- * User Schema
- * Defines the structure for user documents in MongoDB
- */
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -28,7 +24,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please provide a password'],
       minlength: [6, 'Password must be at least 6 characters'],
-      select: false, // Don't include password in queries by default
+      select: false,
     },
     role: {
       type: String,
@@ -37,23 +33,18 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt fields
+    timestamps: true,
   }
 );
 
-/**
- * Hash password before saving to database
- */
-userSchema.pre('save', async function (next) {
-  // Only hash the password if it has been modified (or is new)
+userSchema.pre('save', async function () {
+  
   if (!this.isModified('password')) {
-    return next();
+    return;
   }
 
-  // Generate salt and hash password
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
 /**
@@ -77,4 +68,4 @@ userSchema.methods.toJSON = function () {
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

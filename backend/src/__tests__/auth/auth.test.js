@@ -1,21 +1,18 @@
-const request = require('supertest');
-const mongoose = require('mongoose');
-const app = require('../../app');
-const User = require('../../models/User');
+import request from 'supertest';
+import mongoose from 'mongoose';
+import app from '../../app.js';
+import User from '../../models/User.js';
 
 describe('Authentication API Tests', () => {
-  // Connect to test database before running tests
   beforeAll(async () => {
-    const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sweet-shop-test';
+    const MONGO_URI = process.env.MONGODB_URI;
     await mongoose.connect(MONGO_URI);
   });
 
-  // Clear users collection before each test
   beforeEach(async () => {
     await User.deleteMany({});
   });
 
-  // Disconnect after all tests
   afterAll(async () => {
     await mongoose.connection.close();
   });
@@ -23,8 +20,8 @@ describe('Authentication API Tests', () => {
   describe('POST /api/auth/register', () => {
     it('should register a new user with valid data', async () => {
       const userData = {
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Ujjawal Patidar',
+        email: 'ujjawalp@gmail.com',
         password: 'password123',
       };
 
@@ -42,15 +39,13 @@ describe('Authentication API Tests', () => {
 
     it('should not register user with duplicate email', async () => {
       const userData = {
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Ujjawal Patidar',
+        email: 'ujjawalp@gmail.com',
         password: 'password123',
       };
 
-      // Register first user
       await request(app).post('/api/auth/register').send(userData);
 
-      // Try to register with same email
       const response = await request(app)
         .post('/api/auth/register')
         .send(userData)
@@ -62,7 +57,7 @@ describe('Authentication API Tests', () => {
 
     it('should not register user with missing fields', async () => {
       const userData = {
-        email: 'john@example.com',
+        email: 'ujjawalp@gmail.com',
         // missing name and password
       };
 
@@ -76,7 +71,7 @@ describe('Authentication API Tests', () => {
 
     it('should not register user with invalid email', async () => {
       const userData = {
-        name: 'John Doe',
+        name: 'Ujjawal Patidar',
         email: 'invalid-email',
         password: 'password123',
       };
@@ -92,17 +87,16 @@ describe('Authentication API Tests', () => {
 
   describe('POST /api/auth/login', () => {
     beforeEach(async () => {
-      // Create a test user before each login test
       await request(app).post('/api/auth/register').send({
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Ujjawal Patidar',
+        email: 'ujjawalp@gmail.com',
         password: 'password123',
       });
     });
 
     it('should login user with valid credentials', async () => {
       const loginData = {
-        email: 'john@example.com',
+        email: 'ujjawalp@gmail.com',
         password: 'password123',
       };
 
@@ -118,7 +112,7 @@ describe('Authentication API Tests', () => {
 
     it('should not login user with wrong password', async () => {
       const loginData = {
-        email: 'john@example.com',
+        email: 'ujjawalp@gmail.com',
         password: 'wrongpassword',
       };
 

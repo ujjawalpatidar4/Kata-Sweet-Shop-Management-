@@ -1,14 +1,10 @@
-const User = require('../models/User');
-const { verifyToken } = require('../utils/jwt');
+import User from '../models/User.js';
+import { verifyToken } from '../utils/jwt.js';
 
-/**
- * Protect routes - require authentication
- */
-const protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   try {
     let token;
 
-    // Check if token exists in authorization header
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith('Bearer')
@@ -16,7 +12,6 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
     }
 
-    // Check if token exists
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -25,10 +20,8 @@ const protect = async (req, res, next) => {
     }
 
     try {
-      // Verify token
       const decoded = verifyToken(token);
 
-      // Attach user to request
       req.user = await User.findById(decoded.id);
 
       if (!req.user) {
@@ -50,10 +43,7 @@ const protect = async (req, res, next) => {
   }
 };
 
-/**
- * Authorize specific roles
- */
-const authorize = (...roles) => {
+export const authorize = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({
@@ -65,7 +55,4 @@ const authorize = (...roles) => {
   };
 };
 
-module.exports = {
-  protect,
-  authorize,
-};
+export default { protect, authorize };
