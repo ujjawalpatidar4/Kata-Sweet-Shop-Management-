@@ -54,10 +54,10 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 p-10">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="p-8">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">
+        <div className="p-">
+          <h2 className="text-3xl font-extrabold text-center brand-gradient-text mb-2">
             Create Account
           </h2>
           <p className="text-center text-gray-600 mb-6">
@@ -143,7 +143,7 @@ export default function Register() {
 
           <p className="text-center text-gray-600 mt-6">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+            <Link to="/login" className="text-sky-600 hover:text-sky-700 font-medium">
               Login
             </Link>
           </p>

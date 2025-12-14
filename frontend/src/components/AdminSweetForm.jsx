@@ -81,17 +81,17 @@ export default function AdminSweetForm() {
   const categories = ['Chocolate', 'Candy', 'Gummies', 'Lollipop', 'Hard Candy', 'Sour', 'Other'];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-sky-100 py-12">
       <div className="container max-w-2xl">
         <button
           onClick={() => navigate('/dashboard')}
-          className="text-blue-600 hover:text-blue-700 mb-6"
+          className="text-sky-600 hover:text-sky-700 mb-6"
         >
           ← Back to Dashboard
         </button>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <h1 className="text-3xl font-extrabold brand-gradient-text mb-6">
             {isEditing ? 'Edit Sweet' : 'Add New Sweet'}
           </h1>
 
@@ -137,7 +137,7 @@ export default function AdminSweetForm() {
             </div>
 
             {/* Price */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Price (₹) *

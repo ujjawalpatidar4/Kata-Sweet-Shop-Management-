@@ -33,7 +33,7 @@ export default function SweetCard({ sweet, onPurchase, onEdit, onDelete, isAdmin
   const isInStock = sweet.quantity > 0;
 
   return (
-    <div className="card p-6 flex flex-col h-full">
+    <div className="card p-6 flex flex-col h-full transition-transform hover:-translate-y-0.5">
       {/* Image */}
       <img
         src={sweet.imageUrl}
@@ -51,10 +51,8 @@ export default function SweetCard({ sweet, onPurchase, onEdit, onDelete, isAdmin
 
         {/* Category & Price */}
         <div className="flex justify-between items-center mb-3">
-          <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">
-            {sweet.category}
-          </span>
-          <span className="text-lg font-bold text-green-600">₹{sweet.price.toFixed(2)}</span>
+          <span className="badge-info">{sweet.category}</span>
+          <span className="text-lg font-bold text-emerald-600">₹{sweet.price.toFixed(2)}</span>
         </div>
 
         {/* Stock Status */}

@@ -44,7 +44,7 @@ export default function Login() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
         <div className="p-8">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">
+          <h2 className="text-3xl font-extrabold text-center brand-gradient-text mb-2">
             Welcome Back
           </h2>
           <p className="text-center text-gray-600 mb-6">
@@ -100,7 +100,7 @@ export default function Login() {
 
           <p className="text-center text-gray-600 mt-6">
             Don't have an account?{' '}
-            <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
+            <Link to="/register" className="text-sky-600 hover:text-sky-700 font-medium">
               Register
             </Link>
           </p>

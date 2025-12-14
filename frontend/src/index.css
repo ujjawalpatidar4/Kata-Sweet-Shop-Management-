@@ -8,8 +8,15 @@
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: #f9fafb;
-  color: #1f2937;
+  @apply bg-gradient-to-br from-blue-50 to-sky-100 text-gray-800;
+}
+
+:root {
+  --brand-primary: #0ea5e9; /* sky-500 */
+  --brand-secondary: #8b5cf6; /* violet-500 */
+  --brand-accent: #f59e0b; /* amber-500 */
+  --brand-success: #10b981; /* emerald-500 */
+  --brand-danger: #ef4444; /* red-500 */
 }
 
 .container {
@@ -17,27 +24,68 @@ body {
 }
 
 .btn-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  @apply bg-sky-600 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-sm;
 }
 
 .btn-secondary {
-  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors;
+  @apply bg-slate-200 hover:bg-slate-300 text-slate-800 font-medium py-2 px-4 rounded-lg transition-colors shadow-sm;
 }
 
 .btn-danger {
-  @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  @apply bg-rose-600 hover:bg-rose-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-sm;
+}
+
+.btn-accent {
+  @apply bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-sm;
+}
+
+.btn-ghost {
+  @apply bg-transparent hover:bg-sky-50 text-slate-700 font-medium py-2 px-4 rounded-lg transition-colors;
 }
 
 .card {
-  @apply bg-white rounded-lg shadow hover:shadow-lg transition-shadow;
+  @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100;
 }
 
 .input-field {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 bg-white/90;
 }
 
 .section {
   @apply py-12;
+}
+
+.section-tight {
+  @apply py-8;
+}
+
+/* Chips and badges */
+.badge {
+  @apply inline-block bg-sky-100 text-sky-800 text-xs font-semibold px-3 py-1 rounded;
+}
+
+.badge-success {
+  @apply inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded;
+}
+
+.badge-info {
+  @apply inline-block bg-violet-100 text-violet-800 text-xs font-semibold px-3 py-1 rounded;
+}
+
+/* Search dropdown styling */
+.dropdown {
+  @apply absolute z-20 mt-2 w-full bg-white border border-slate-200 rounded-lg shadow-lg max-h-72 overflow-auto;
+}
+.dropdown-item {
+  @apply px-3 py-2 text-sm text-slate-700 hover:bg-sky-50 cursor-pointer flex items-center justify-between;
+}
+.dropdown-item-active {
+  @apply bg-sky-100 text-slate-900;
+}
+
+/* Brand gradient text */
+.brand-gradient-text {
+  @apply bg-gradient-to-r from-sky-600 via-violet-600 to-emerald-600 bg-clip-text text-transparent;
 }
 
 a {
